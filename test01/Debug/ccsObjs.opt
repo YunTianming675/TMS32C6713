@@ -1,0 +1,1 @@
+"./test01.obj" "../test01.cmd" -l"libc.a" 

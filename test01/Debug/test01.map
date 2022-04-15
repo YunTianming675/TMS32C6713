@@ -1,0 +1,96 @@
+******************************************************************************
+               TMS320C6x Linker PC v7.4.4                      
+******************************************************************************
+>> Linked Wed Mar 30 16:04:59 2022
+
+OUTPUT FILE NAME:   <test01.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00003000
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+PAGE 0:
+  ROM0                  00003000   00000200  00000180  00000080  RWIX
+  ROM1                  00004000   00000020  00000008  00000018  RWIX
+
+PAGE 1:
+  RAM                   00005000   00000020  00000020  00000000  RWIX
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.text      0    00003000    00000180     
+                  00003000    00000180     test01.obj (.text)
+
+.data      0    00004000    00000008     
+                  00004000    00000008     test01.obj (.data)
+
+.bss       1    00005000    00000020     UNINITIALIZED
+                  00005000    00000020     test01.obj (.bss)
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+00005000   $bss
+00005000   .bss
+00004000   .data
+00003000   .text
+ffffffff   ___TI_pprof_out_hndl
+ffffffff   ___TI_prof_data_size
+ffffffff   ___TI_prof_data_start
+ffffffff   ___binit__
+00005000   ___bss__
+ffffffff   ___c_args__
+ffffffff   ___cinit__
+00004000   ___data__
+00004008   ___edata__
+00005020   ___end__
+00003180   ___etext__
+ffffffff   ___pinit__
+00003000   ___text__
+00003000   _c_int00
+ffffffff   binit
+ffffffff   cinit
+00004008   edata
+00005020   end
+00003180   etext
+ffffffff   pinit
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00003000   .text
+00003000   ___text__
+00003000   _c_int00
+00003180   ___etext__
+00003180   etext
+00004000   .data
+00004000   ___data__
+00004008   ___edata__
+00004008   edata
+00005000   $bss
+00005000   .bss
+00005000   ___bss__
+00005020   ___end__
+00005020   end
+ffffffff   ___TI_pprof_out_hndl
+ffffffff   ___TI_prof_data_size
+ffffffff   ___TI_prof_data_start
+ffffffff   ___binit__
+ffffffff   ___c_args__
+ffffffff   ___cinit__
+ffffffff   ___pinit__
+ffffffff   binit
+ffffffff   cinit
+ffffffff   pinit
+
+[24 symbols]

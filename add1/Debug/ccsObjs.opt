@@ -1,0 +1,1 @@
+"./add1.obj" "../add1.cmd" -l"C:\ti\ccsv5\tools\compiler\c6000_7.4.4\lib\rts6700.lib" -l"libc.a" 
