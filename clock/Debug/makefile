@@ -8,8 +8,7 @@ CG_TOOL_ROOT := C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
-"./test02.obj" \
-"../test02.cmd" \
+"./dec6713.obj" \
 -l"libc.a" \
 
 -include ../makefile.init
@@ -109,21 +108,21 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: test02.out
+all: clock.out
 
 # Tool invocations
-test02.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+clock.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6700 --abi=coffabi -g --define=c6713 --display_error_number --diag_warning=225 --diag_wrap=off -z --stack_size=0x800 -m"test02.map" --heap_size=0x800 -i"C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="test02_linkInfo.xml" --rom_model -o "test02.out" $(ORDERED_OBJS)
+	"C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6700 --abi=coffabi -g --define=c6713 --display_error_number --diag_warning=225 --diag_wrap=off -z --stack_size=0x800 -m"clock.map" --heap_size=0x800 -i"C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="clock_linkInfo.xml" --rom_model -o "clock.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(C6000_EXECUTABLE_OUTPUTS__QUOTED) "test02.out"
-	-$(RM) "test02.obj" 
-	-$(RM) "test02.pp" 
+	-$(RM) $(C6000_EXECUTABLE_OUTPUTS__QUOTED) "clock.out"
+	-$(RM) "dec6713.pp" 
+	-$(RM) "dec6713.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

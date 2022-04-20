@@ -1,6 +1,13 @@
 #include<dec6713.h>
 #include<stdio.h>
 
+int main(void)
+{
+	DEC6713_Init();
+	while(1)
+	{}
+}
+
 void Delay(Uint32 n)
 {
 	volatile Uint32 i = n;
@@ -10,7 +17,7 @@ void Delay(Uint32 n)
 void DEC6713_Init(void)
 {
 	struct pll *p;
-	register int x;
+	register int x, x0, x1, x2, x3, x4;
 
 	p = (struct pll *)0x01B7C100;
 	x = -2;				// 1111....1110
@@ -63,4 +70,40 @@ void DEC6713_Init(void)
 	x = 1;
 	p->pllcsr |= x;		// 将系统时钟切换到PLL
 	Delay(1500);
+	x = p->pllcsr;
+	x |= 1;
+	p->pllcsr = x;
+	Delay(20);
+
+	// EMIF
+	emif_base = (volatile Uint32 *)0x01800000;
+	x1 = emif_base[0];
+	x1 &= 0xFFFFFF37;
+	x1 |= 1<<5;
+
+	x2 = emif_base[2];
+	x2 &= 0xFFFFFF0F;
+	x2 |= 3<<4;
+
+	x3 = emif_base[6];
+	x3 &= 0x80000FFF;
+	x3 |= 1<<30;
+	x3 |= 1<<28;
+	x3 |= 1<<26;
+	x3 |= 0xFF226FFF;
+
+	x4 = emif_base[7];
+	x4 &= 0xFC000000;
+	x4 |= 1<<24;
+	x4 |= 1400;
+
+	x0 = emif_base[8];
+	x0 &= 0xFFE00000;
+	x0 |= 0x0008854;
+
+	emif_base[0] = x1;
+	emif_base[2] = x2;
+	emif_base[6] = x3;
+	emif_base[7] = x4;
+	emif_base[8] = x0;
 }
