@@ -1,0 +1,1 @@
+"./vecs.obj" "./timer.obj" "./dec6713.obj" "../timer.cmd" -l"libc.a" 
