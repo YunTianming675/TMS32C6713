@@ -9,30 +9,30 @@
 #define IRQ_H_
 #include<DEC6713.h>
 #include<c6x.h>
-#define GPINT4 4       //定时器中断
-#define GPINT5 5
-#define GPINT6 6
-#define GPINT7 7
-#define EDMAINT 8
-#define EMUDTDMA 9
-#define SDINT 3
-#define EMURTDXRX 10
-#define EMURTDXTX 11
-#define DSPINT 0
-#define TINT0 1
-#define TINT1 2
+#define GPINT4ID 4       //定时器中断
+#define GPINT5ID 5
+#define GPINT6ID 6
+#define GPINT7ID 7
+#define EDMAINTID 8
+#define EMUDTDMAID 9
+#define SDINTID 3
+#define EMURTDXRXID 10
+#define EMURTDXTXID 11
+#define DSPINTID 0
+#define TINT0ID 1
+#define TINT1ID 2
 
-#define XINT0 12
-#define XINT1 14
-#define RINT0 13
-#define RINT1 15
-#define GPINT0 16
-#define I2CINT0 22
-#define I2CINT1 23
-#define AXINT0 28
-#define AXINT1 30
-#define ARINT0 29
-#define ARINT1 31
+#define XINT0ID 12
+#define XINT1ID 14
+#define RINT0ID 13
+#define RINT1ID 15
+#define GPINT0ID 16
+#define I2CINT0ID 22
+#define I2CINT1ID 23
+#define AXINT0ID 28
+#define AXINT1ID 30
+#define ARINT0ID 29
+#define ARINT1ID 31
 
 #define MUX_ADDR 0x019c0000   //起始地址
 #define MUXH 0    //偏移地址

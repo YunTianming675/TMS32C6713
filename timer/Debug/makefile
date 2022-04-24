@@ -8,9 +8,10 @@ CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/c6000_7.4.4
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
-"./sdram.obj" \
+"./vecs.obj" \
+"./timer.obj" \
 "./dec6713.obj" \
-"../sdram.cmd" \
+"../timer.cmd" \
 -l"libc.a" \
 
 -include ../makefile.init
@@ -110,21 +111,22 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: sdram.out
+all: timer.out
 
 # Tool invocations
-sdram.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+timer.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6700 --abi=coffabi -g --define=c6713 --display_error_number --diag_warning=225 --diag_wrap=off -z --stack_size=0x800 -m"sdram.map" --heap_size=0x800 -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="sdram_linkInfo.xml" --rom_model -o "sdram.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6700 --abi=coffabi -g --define=c6713 --display_error_number --diag_warning=225 --diag_wrap=off -z --stack_size=0x800 -m"timer.map" --heap_size=0x800 -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="timer_linkInfo.xml" --rom_model -o "timer.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(C6000_EXECUTABLE_OUTPUTS__QUOTED) "sdram.out"
-	-$(RM) "dec6713.pp" "sdram.pp" 
-	-$(RM) "dec6713.obj" "sdram.obj" 
+	-$(RM) $(C6000_EXECUTABLE_OUTPUTS__QUOTED) "timer.out"
+	-$(RM) "dec6713.pp" "timer.pp" 
+	-$(RM) "dec6713.obj" "timer.obj" "vecs.obj" 
+	-$(RM) "vecs.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
