@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4
+CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/c6000_7.4.4
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
@@ -114,7 +114,7 @@ all: clock.out
 clock.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6700 --abi=coffabi -g --define=c6713 --display_error_number --diag_warning=225 --diag_wrap=off -z --stack_size=0x800 -m"clock.map" --heap_size=0x800 -i"C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/MyProgram/tools/CCS5/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="clock_linkInfo.xml" --rom_model -o "clock.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6700 --abi=coffabi -g --define=c6713 --display_error_number --diag_warning=225 --diag_wrap=off -z --stack_size=0x800 -m"clock.map" --heap_size=0x800 -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="clock_linkInfo.xml" --rom_model -o "clock.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
