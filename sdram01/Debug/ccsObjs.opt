@@ -1,1 +1,0 @@
-"./sdram.obj" "./dec6713.obj" "../sdram.cmd" -l"libc.a" 
