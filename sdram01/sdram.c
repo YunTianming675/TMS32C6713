@@ -1,5 +1,6 @@
-#include <dec6713.h>
-#include <stdio.h>
+#include<dec6713.h>
+#include<stdio.h>
+#include<stdlib.h>
 
 Uint32 *Src_StartAdd;
 Uint32 *Dst_StartAdd;

@@ -25,7 +25,7 @@ void DEC6713_Init(void)
 	x = p->pllm;
 	x &= 0xFFFFFFE0;	// 1111_1111_1110_0000
 	p->pllm = x;		// 倍频系数置0
-	x |= 17;			// 0001_0001
+	x |= 16;			// 0001_0000
 	p->pllm = x;		// 倍频系数置1
 	Delay(20);
 	x = 1<<15;			// 1000_0000_0000_0000
@@ -76,7 +76,7 @@ void DEC6713_Init(void)
 	// EMIF
 	emif_base = (volatile Uint32 *)0x01800000;
 	x1 = emif_base[0];  // EMIF global control
-	x1 &= 0xFFFFFF37;	// ...0011_0111
+	x1 &= 0xFFFFFF67;	// ...0010_0111
 	x1 |= 1<<5;
 
 	x2 = emif_base[2];  // EMIF CE0 space control
