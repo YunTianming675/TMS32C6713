@@ -1,32 +1,12 @@
-
-/*********************************************************************************
-* DEC6713.C	v1.00	     							                            *
-* Copyright	2003 by SEED Electronic Technology Ltd.
-* All rights reserved. Property of SEED Electronic Technology Ltd.			                *
-* Designed by:	Hongshuai.Li								                                *
-*********************************************************************************/
-//#include <csl.h>
-//#include <csl_mcasp.h>
-//#include <csl_i2c.h>
-//#include <csl_emif.h>
-//#include <csl_pll.h>
 #include <dec6713.h>
 #include <irq.h>
 #include <c6x.h>
 
-/*Local software delay function*/
 static void PLLDelay(int Count)
 {
     volatile int i = Count;
     while(i--);
 }
-
-/********************************************************************************\
-\*DEC6713_init()	-Initialize DEC6713 board.
-\*Parameters: NO.
-\*
-\*Return:No.
-\********************************************************************************/
 
 void DEC6713_init()
 {

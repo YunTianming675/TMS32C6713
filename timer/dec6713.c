@@ -11,33 +11,26 @@ void DEC6713_Init(void)
 {
 	volatile Uint32 *emif_base = (volatile Uint32 *)0x01800000;
 	volatile Uint32 *pll_base = (volatile Uint32 *)0x01B7C100;
-	register int x0, x1, x2, x3, x4, x5, x6;
+	register int x0, x1, x5, x6;
 	register int y0, y1, y2, y3, y4, y5, y6;
 
 	x0 = emif_base[GBLCTL];
-	x1 = emif_base[CECTL0];
-	x2 = emif_base[CECTL1];
-	x3 = emif_base[CECTL2];
-	x4 = emif_base[CECTL3];
-	x5 = emif_base[SDCTL];
-	x6 = emif_base[SDTIM];
 
-	x0 &= 0xFFFFFF67;
 	x0 |= 0x00000020;
-	x1 |= 0xFFFFFFFF;
-	x1 &= 0xFFFFBF33;
+	x0 &= 0xFFFFBF67;
+	x1 = 0xFFFFBF33;
 	x5 = 0x56227000;
 	x6 = 0x00281578;
 
-	y0 = pll_base[PLLCSR];
-	y1 = pll_base[PLLM];
-	y2 = pll_base[PLLDIV0];
-	y3 = pll_base[PLLDIV1];
-	y4 = pll_base[PLLDIV2];
-	y5 = pll_base[PLLDIV3];
-	y6 = pll_base[OSDDIV];
+//	y0 = pll_base[PLLCSR];
+//	y1 = pll_base[PLLM];
+//	y2 = pll_base[PLLDIV0];
+//	y3 = pll_base[PLLDIV1];
+//	y4 = pll_base[PLLDIV2];
+//	y5 = pll_base[PLLDIV3];
+//	y6 = pll_base[OSDDIV];
 
-	y0 &= 0xFFFFFFFE;
+	y0 = 0xFFFFFFFE;
 	y1 = 0x00000012;
 	y2 = 0x00008000;
 	y3 = 0x00008001;
@@ -45,10 +38,11 @@ void DEC6713_Init(void)
 	y5 = 0x00008004;
 	y6 = 0x00008004;
 
-	pll_base[PLLCSR] = y0;
+	x0 &= 0xFFFFFFFE;
+	pll_base[PLLCSR] = x0;
 	PLLDelay(20);
-	y0 |= 0x00000008;
-	pll_base[PLLCSR] = y0;
+	x0 |= 0x00000008;
+	pll_base[PLLCSR] = x0;
 	PLLDelay(20);
 
 	pll_base[PLLM] = y1;	// 25MHz x 18 = 450MHz
@@ -63,12 +57,12 @@ void DEC6713_Init(void)
 	PLLDelay(20);
 	pll_base[PLLDIV3] = y5; // EMIFClock = 450MHz/5=90MHz
 	PLLDelay(20);
-	y0 &= 0xFFFFFFF7;
+	x0 &= 0xFFFFFFF7;
 	pll_base[PLLCSR] = y0;
 	PLLDelay(1500);
 	// Enable PLL
-	y0 |= 0x00000001;
-	pll_base[PLLCSR] = y0;
+	x0 |= 0x00000001;
+	pll_base[PLLCSR] = x0;
 	PLLDelay(20);
 
 	// EMIF Initialize
@@ -134,13 +128,13 @@ void DEC6713_wait(Uint32 delay)
 	}
 }
 
-void *IRQ_setVecs(void *vecs)
+void IRQ_setVecs(void *vecs)
 {
 	register int p,ir;
-	p=(Uint32)vecs;
-	ir=ISTP;
-	ir&=0xfffffc00;
-	p&=0xfffffc00;
-	ir=p;
-	ISTP=ir;
+	p = (Uint32)vecs;
+	ir = ISTP;
+	ir &= 0xfffffc00;
+	p &= 0xfffffc00;
+	ir = p;
+	ISTP = ir;
 }

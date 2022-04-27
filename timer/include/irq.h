@@ -50,7 +50,7 @@ typedef struct
 	Uint32 *base_addr;
 }TIMER_Handle;
 
-void *IRQ_setVecs(void *vecs);     /* point to the IRQ vector table	*/
+void IRQ_setVecs(void *vecs);     /* point to the IRQ vector table	*/
 //void IRQ_globalEnable();       /* Globally enable interrupts       */
 //void IRQ_nmiEnable();          /* Enable NMI interrupt             */
 

@@ -13,7 +13,6 @@ volatile Uint32 *tim = (volatile Uint32 *)TIM1_ADDR;
 
 int main()
 {
-
 	register int x0, x1;
 	register int y0, y1, y2;
 
@@ -21,9 +20,11 @@ int main()
 	IRQ_setVecs(vectors);
 
 	x0 = TINT1ID;
+	// 开全局中断
 	x1 = CSR;
 	x1 |= 1;
 	CSR = x1;
+
 	x1 = IER;
 	x1 |= 2;
 	IER = x1;
@@ -66,7 +67,9 @@ void TimerEventHandler(void)
 		x = tim[0];
 		x &= 0x00000080;
 		tim[0] = x;
+		printf("\n Done");
 	}
+	printf("/n Count: %d", cnt);
 }
 
 interrupt void

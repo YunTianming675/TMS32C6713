@@ -22,88 +22,94 @@ void DEC6713_Init(void)
 	x |= 8;				// 1000
 	p->pllcsr = x;		// PLL复位
 	Delay(20);
-	x = p->pllm;
-	x &= 0xFFFFFFE0;	// 1111_1111_1110_0000
-	p->pllm = x;		// 倍频系数置0
-	x |= 16;			// 0001_0000
+//	x = p->pllm;
+//	x &= 0xFFFFFFE0;	// 1111_1111_1110_0000
+//	p->pllm = x;		// 倍频系数置0
+	x = 18;				// 0001_0000
 	p->pllm = x;		// 倍频系数置1
 	Delay(20);
-	x = 1<<15;			// 1000_0000_0000_0000
-	p->plldiv0 |= x;	// 使能分频器0
-	x = 0xFFE0;			// 1111_1111_1110_0000
-	p->plldiv0 &= x;	// 分频系数置1
-	x = 1;
-	p->plldiv0 |= x;	// 分频系数置2
+	x = 0x00008000;
+	p->plldiv0 = x;	// 使能分频器0
+//	x = 0xFFE0;			// 1111_1111_1110_0000
+//	p->plldiv0 &= x;	// 分频系数置1
+//	x = 1;
+//	p->plldiv0 |= x;	// 分频系数置2
 	Delay(20);
 
-	x = 1<<15;			// 1000_0000_0000_0000
-	p->plldiv1 |= x;	// 使能分频器1
-	x = 0xFFE0;			// 1111_1111_1110_0000
-	p->plldiv1 &= x;	// 分频系数置1
-	x = 3;				// 0011
-	p->plldiv1 |= x;	// 分频系数置3
+	x = 0x00008001;
+	p->plldiv1 = x;	// 使能分频器1
+//	x = 0xFFE0;			// 1111_1111_1110_0000
+//	p->plldiv1 &= x;	// 分频系数置1
+//	x = 3;				// 0011
+//	p->plldiv1 |= x;	// 分频系数置3
 	Delay(20);
 
-	x = 1<<15;
-	p->plldiv2 |= x;	// 使能分频器2
-	x = 0xFFE0;
-	p->plldiv2 &= x;	// 分频系数置1
-	x = 4;
-	p->plldiv2 |= x;	// 分频系数置5
+	x = 0x00008003;
+	p->plldiv2 = x;	// 使能分频器2
+//	x = 0xFFE0;
+//	p->plldiv2 &= x;	// 分频系数置1
+//	x = 4;
+//	p->plldiv2 |= x;	// 分频系数置5
 	Delay(20);
 
-	x = p->oscdiv;
-	x |= 1<<15;
-	p->oscdiv |= x;		// 使能晶振分频
-	x &= 0xFFFFFFE0;
-	p->oscdiv &= x;		// 晶振分频置1
-	x |= 4;
-	p->oscdiv |= x;		// 晶振分频置5
+	x = 0x00008004;
+	p->plldiv3 = x;
 	Delay(20);
 
-	x = 0xFFF7;			// 1111_1111_1111_0111
-	p->pllcsr &= x;		// 释放PLL复位
+//	x = p->oscdiv;
+//	x |= 1<<15;
+//	p->oscdiv |= x;		// 使能晶振分频
+//	x &= 0xFFFFFFE0;
+//	p->oscdiv &= x;		// 晶振分频置1
+//	x |= 4;
+	p->oscdiv = x;		// 晶振分频置5
 	Delay(20);
 
-	x = 1;
-	p->pllcsr |= x;		// 将系统时钟切换到PLL
+	x &= 0xFFFFFFFE;			// 1111_1111_1111_0111
+	p->pllcsr = x;		// 释放PLL复位
+	Delay(20);
+
+	x &= -2;
+	x |= 8;
+	x &= 0xFFFFFFF7;
+	p->pllcsr = x;		// 将系统时钟切换到PLL
 	Delay(1500);
-	x = p->pllcsr;
 	x |= 1;
 	p->pllcsr = x;
 	Delay(20);
 
 	// EMIF
 	emif_base = (volatile Uint32 *)0x01800000;
-	x1 = emif_base[0];  // EMIF global control
+	x1 = emif_base[0];
 	x1 &= 0xFFFFFF67;	// ...0010_0111
 	x1 |= 1<<5;
 
-	x2 = emif_base[2];  // EMIF CE0 space control
-	x2 &= 0xFFFFFF0F;
-	x2 |= 3<<4;
+	x2 = emif_base[2];
+	x2 = 0xFFFFBF33;
+//	x2 |= 3<<4;
 
-	x3 = emif_base[6];	// EMIF SDRAM control
-	x3 &= 0x80000FFF;
-	x3 |= 1<<30;
-	x3 |= 1<<28;
-	x3 |= 1<<26;
-	x3 |= 0xFF226FFF;	// ...0010_0010_0110...
+//	x3 = emif_base[6];
+//	x3 &= 0x80000FFF;
+//	x3 |= 1<<30;
+//	x3 |= 1<<28;
+//	x3 |= 1<<26;
+//	x3 |= 0xFF226FFF;	// ...0010_0010_0110...
+	x3 = 0x56227000;
 
-	x4 = emif_base[7];	// EMIF SDRAM refresh control
-	x4 &= 0xFC000000;	// 1111_1100...
-	x4 |= 1<<24;
-	x4 |= 1400;
+//	x4 = emif_base[7];
+//	x4 &= 0xFC000000;	// 1111_1100...
+//	x4 |= 1<<24;
+//	x4 |= 1400;
+	x4 = 0x00281578;
 
 	x0 = emif_base[8];	// EMIF SDRAM extension
 	x0 &= 0xFFE00000;
 	x0 |= 0x0008854;
 
-	emif_base[0] = x1;
+	emif_base[0] = x;
 	emif_base[2] = x2;
 	emif_base[6] = x3;
 	emif_base[7] = x4;
-	emif_base[8] = x0;
 }
 
 /********************************************************************************\
