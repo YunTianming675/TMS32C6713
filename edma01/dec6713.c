@@ -13,6 +13,7 @@ void DEC6713_init()
 	volatile Uint32 *emif_base=(volatile Uint32*)0x01800000,*pll_base=(volatile Uint32*)0x01b7c100;
 	register int x0,x1,x2,x3,x4,x5,x6;
 	register int y0,y1,y2,y3,y4,y5,y6;
+	printf("run in DEC6713_init()\n");
 	x0=emif_base[GBLSTL];
 	x0|=0x00000020;
 	x0&=0xffffbf67;
@@ -44,6 +45,7 @@ void DEC6713_init()
     /* Set DSP clock */
 	pll_base[PLLDIV1]=y3;
     PLLDelay(20);
+    printf("Dec6713_init() Set DSP clock\n");
 
     /* Set peripheral clock */
     pll_base[PLLDIV2]=y4;

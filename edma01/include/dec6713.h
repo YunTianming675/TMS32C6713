@@ -1,14 +1,7 @@
-/********************************************************************************\
-\*DEC6713.H	  	v1.00	     							                            *
-* Copyright	2003 by SEED Electronic Technology Ltd.
-* All rights reserved. Property of SEED Electronic Technology Ltd.			                *
-* Designed by:	Hongshuai.Li								                                *
-\********************************************************************************/
 #ifndef DEC6713_
 #define DEC6713_
 
-
-//#include <csl.h>
+#include<stdio.h>
 
 /* CPLD address definitions */
 #define DEC6713_CPLD_BASE    0xA0080000
