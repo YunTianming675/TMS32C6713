@@ -9,5 +9,4 @@
 	<linkerCommandFile value="C6713.cmd"/>
 	<rts value="libc.a"/>
 	<templateProperties value="id=com.ti.common.project.core.emptyProjectTemplate,"/>
-	<isTargetManual value="false"/>
 </projectOptions>

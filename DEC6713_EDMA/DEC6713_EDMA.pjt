@@ -1,0 +1,36 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectDir="f:\dec6713\soft design\dec6713\csl\DEC6713_EDMA\"
+ProjectType=Executable
+CPUFamily=TMS320C67XX
+Tool="Compiler"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="DEC6713.C"
+Source="DEC6713_EDMA.c"
+Source="vecs.asm"
+Source="edma.cmd"
+
+["Compiler" Settings: "Debug"]
+Options=-g -q -fr"f:\dec6713\soft design\dec6713\csl\DEC6713_EDMA\Debug" -i".\include" -d"CHIP_6713" -mv6710
+
+["Compiler" Settings: "Release"]
+Options=-q -o3 -fr"f:\dec6713\soft design\dec6713\csl\DEC6713_EDMA\Release" -mv6700
+
+["DspBiosBuilder" Settings: "Debug"]
+Options=-v6x
+
+["DspBiosBuilder" Settings: "Release"]
+Options=-v6x
+
+["Linker" Settings: "Debug"]
+Options=-q -c -heap1000 -m".\Debug\DEC6713_EDMA.map" -o".\Debug\DEC6713_EDMA.out" -stack1000 -w -x -l"csl6713.lib" -l"rts6700.lib"
+
+["Linker" Settings: "Release"]
+Options=-q -c -m".\Release\DEC6713_EDMA.map" -o".\Release\DEC6713_EDMA.out" -w -x
+

@@ -1,0 +1,11 @@
+--------------------------  DEC6713_EDMA.pjt - Debug  --------------------------
+"c:\ti\c6000\cgtools\bin\cl6x" -g -q -fr"f:/dec6713/soft design/dec6713/csl/DEC6713_EDMA/Debug" -i"./include" -d"CHIP_6713" -mv6710 -@"Debug.lkf" "DEC6713.C"
+
+"c:\ti\c6000\cgtools\bin\cl6x" -g -q -fr"f:/dec6713/soft design/dec6713/csl/DEC6713_EDMA/Debug" -i"./include" -d"CHIP_6713" -mv6710 -@"Debug.lkf" "DEC6713_EDMA.c"
+
+"c:\ti\c6000\cgtools\bin\cl6x" -g -q -fr"f:/dec6713/soft design/dec6713/csl/DEC6713_EDMA/Debug" -i"./include" -d"CHIP_6713" -mv6710 -@"Debug.lkf" "vecs.asm"
+
+"c:\ti\c6000\cgtools\bin\cl6x" -@"Debug.lkf"
+
+Build Complete,
+  0 Errors, 0 Warnings, 0 Remarks.

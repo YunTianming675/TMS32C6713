@@ -35,7 +35,7 @@
 #define ARINT0 29
 #define ARINT1 31
 
-#define MUX_ADDR 0x019c0000   //起始地址
+#define MUX_ADDR 0x019C0000   //起始地址
 #define MUXH 0    //偏移地址
 #define MUXL 1
 

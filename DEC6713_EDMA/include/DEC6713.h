@@ -11,23 +11,6 @@
 
 /* CPLD address definitions */
 #define DEC6713_CPLD_BASE    0x90100000
-#define GBLCTL 0
-#define CECTL0 2
-#define CECTL1 1
-#define CECTL2 4
-#define CECTL3 5
-#define SDCTL 6
-#define SDTIM 7
-
-#define PLLCSR 0
-#define PLLM 4
-#define PLLDIV0 5
-#define PLLDIV1 6
-#define PLLDIV2 7
-#define PLLDIV3 8
-#define OSDDIV 9
-
-
 
 /* CPLD Register Indices */
 #define DEC6713_CTL_REG    	 	0x00;

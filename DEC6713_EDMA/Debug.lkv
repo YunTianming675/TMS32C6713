@@ -1,0 +1,5 @@
+-z -q -c -heap1000 -m"./Debug/DEC6713_EDMA.map" -o"./Debug/DEC6713_EDMA.out" -stack1000 -w -x -i"c:/ti/c6000/bios/lib" -i"c:/ti/c6000/rtdx/lib" -i"c:/ti/c6000/xdais/lib" -i"c:/ti/C6000/dsk6713/lib" -i"c:/ti/c6000/cgtools/lib" -l"csl6713.lib" -l"rts6700.lib"
+"f:\dec6713\soft design\dec6713\csl\DEC6713_EDMA\Debug\DEC6713.obj"
+"f:\dec6713\soft design\dec6713\csl\DEC6713_EDMA\Debug\DEC6713_EDMA.obj"
+"f:\dec6713\soft design\dec6713\csl\DEC6713_EDMA\Debug\vecs.obj"
+"F:\DEC6713\Soft Design\DEC6713\CSL\DEC6713_EDMA\edma.cmd"
