@@ -14,11 +14,11 @@
 * (Note: This example runs with CACHE enable).
 \******************************************************************************/
 #include <stdio.h>
-#include <DEC6713.h>
+#include <dec6713.h>
 #include <irq.h>
 #include <edma.h>
 #include <c6x.h>
-//#include <stdlib.h>
+#include <stdlib.h>
 /*----------------------------------------------------------------------------*/
 /* Pick which EDMA transfer completion interrupt we want to use */
 #define TCCINTNUM   10
@@ -80,6 +80,8 @@ void main(){
   register int y1,y2,y3,y4,y5,y6;
   register int t,t1,t2;
   volatile Uint32 *p1,*p2,*p3;
+
+  printf("run in main\n");
   x1=0x403a0002;//OPT 通道选择状态
   x2=(Uint32)(&ping_data);//SRC EMDA通道源地址参数，起始字节地址。
   x3=BUFF_SZ;//CNT 传递个数256
@@ -164,7 +166,7 @@ void main(){
   p2=&pram_base[5];
 
   //EDMA_config(hEdmaPong, &cfgEdmaPong);
-  pram_base=(volatile Uint32 *)(PRAMADDR+10*6*4);//通道10装pong
+  pram_base=(volatile Uint32 *)(LINKPRAMADDR+10*6*4);//通道10装pong
   t2=(Uint32)pram_base;
   pram_base[0]=y1;
   pram_base[1]=y2;
@@ -221,6 +223,7 @@ void main(){
   	timer_base[0]=x1;
 
 
+  	printf("waiting for interrupts");
   while(transferCount <= TRANSFER_CNT); /* waiting for interrupts */
 }
 

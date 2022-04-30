@@ -58,5 +58,6 @@
 #define ESR 7
 
 #define CACHE_WAIT 1
+#define LINKPRAMADDR 0x01A001C8
 
 #endif /* EDMA_H_ */
